@@ -1,0 +1,16 @@
+package com.example.issuems.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.issuems.demo.Issue;
+
+@Repository
+public interface IssueRepo extends JpaRepository<Issue, Long> {
+	
+	public List<Issue>findByIsbn(String isbn);
+	public List<Issue>findByCustomerId(Long customerId);
+
+}

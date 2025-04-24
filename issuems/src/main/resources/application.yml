@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: issuems
+  h2:
+    console:
+      enabled: true
+  jpa:
+   show-sql: true
+   properties:
+     hibernate: 
+       format_sql: true
+       ddl-auto: update
+  datasource:
+    url: jdbc:h2:mem:issuedb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+server:
+  port: 8083
+management:
+  health:
+    circuitbreakers:
+      enabled : true
+  endpoint:
+    health: 
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 30
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5    
+        slidingWindowType : COUNT_BASED
+    instances:
+      bookmsclient:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold : 50
+        slidingWindowSize: 10
+        slidingWindowType : COUNT_BASED
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 30
+        automatic-transition-from-open-to-half-open-enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+       defaultZone: http://eureka-server:8761/eureka/

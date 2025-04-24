@@ -1,0 +1,33 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: bookms
+  h2:
+    console:
+      enabled: true
+  jpa:
+   show-sql: true
+   properties:
+     hibernate: 
+       format_sql: true
+       ddl-auto: update
+  datasource:
+    url: jdbc:h2:mem:booksdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+management:
+  endpoint:
+     health: 
+       show-details: always
+  endpoints:
+     web:
+       exposure:
+         include: '*'
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/

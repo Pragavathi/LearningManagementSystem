@@ -1,0 +1,20 @@
+package com.example.bookms.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.example.bookms.demo.Book;
+import com.example.bookms.demo.BookAvailableCopies;
+
+@Repository
+public interface BookRepo extends JpaRepository<Book,String> {
+	
+	  @Query("SELECT b.isbn as bookIsbn, b.totalCopies-b.issuedCopies as availableCopies FROM Book b WHERE b.totalCopies>b.issuedCopies")
+	  List<BookAvailableCopies> findAvailableCopiesOfBooks();
+	  Optional<Book> findBookByAuthorContainingIgnoreCase(String author);
+	  Optional<Book> findBookByTitleContainingIgnoreCase(String title);
+}
