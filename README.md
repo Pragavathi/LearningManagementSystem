@@ -18,9 +18,13 @@
    APIs used to fetch/post/delete/update
      Get Methods
            http://lcoalhost:8080/bookms/books - Fetch all the books
+    
            http://lcoalhost:8080/bookms/books/{isbn} - Fetch book by isbn
+    
            http://lcoalhost:8080/bookms/books/author/{author} - Fetch book by author
+    
            http://lcoalhost:8080/bookms/books/title/{title} - Fetch book by title
+    
            http://lcoalhost:8080/bookms/books/availbleBooks - Fetch the available books by checking total copies against issued copies
      Post Methods
            http://lcoalhost:8080/bookms/books - Add a new Book
@@ -29,7 +33,7 @@
      Delete Method
            http://lcoalhost:8080/bookms/books/{isbn} - Delete book by isbn
     
- 4. Issue Microservice - (Issuems)
+ 5. Issue Microservice - (Issuems)
      Which stores the issued book details of a library
      APIs used to fetch/post/delete/update
      Get Methods
