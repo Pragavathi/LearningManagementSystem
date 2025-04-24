@@ -16,4 +16,8 @@ public interface BookRepo extends JpaRepository<Book,String> {
 	  @Query("SELECT b.isbn as bookIsbn, b.totalCopies-b.issuedCopies as availableCopies FROM Book b WHERE b.totalCopies>b.issuedCopies")
 	  List<BookAvailableCopies> findAvailableCopiesOfBooks();
 
+	List<Book> findBookByAuthorContainingIgnoreCase(String author);
+
+	List<Book> findBookByTitleContainingIgnoreCase(String title);
+
 }

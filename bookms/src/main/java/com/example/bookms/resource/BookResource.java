@@ -57,6 +57,20 @@ public class BookResource {
 		return ResponseEntity.notFound().build();
 	}
 	
+	
+	@GetMapping("/author/{author}")
+	public List<Book> getBookByAuthor(@PathVariable String author)
+	{
+		LOGGER.info("Retrieve all the books written by {}", author);		
+		return bookRepo.findBookByAuthorContainingIgnoreCase(author);
+	}
+	
+	@GetMapping("/title/{title}")
+	public List<Book> getBookByTitle(@PathVariable String title)
+	{
+		LOGGER.info("Retrieve all the books with the title of {}", title);		
+		return bookRepo.findBookByTitleContainingIgnoreCase(title);
+	}
 	@GetMapping("/availableBooks")
 	public List<BookAvailableCopies> getAllAvailableCopiesOfBooks()
 	{
